@@ -14,7 +14,7 @@ export function AuthLayout() {
                 </footer>
             </div>
 
-            <div>
+            <div className="flex flex-col items-center justify-center">
                 <Outlet />
             </div>
         </div>
