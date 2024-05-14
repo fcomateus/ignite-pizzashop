@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet-async"
 import { useForm } from 'react-hook-form'
 import { z as zod} from 'zod'
 import { Link, useNavigate } from "react-router-dom"
+import { useMutation } from "@tanstack/react-query"
+import { registerRestaurant } from "@/api/registerRestaurant"
 
 const signUpForm = zod.object({
     restaurantName: zod.string(),
@@ -24,14 +26,24 @@ export function SignUp() {
 
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
 
+    const { mutateAsync: registerRestaurantRequest } = useMutation({
+        mutationFn: registerRestaurant
+    })
+
     async function handleSignUp(data: SignUpForm) {
         try {
 
-            await new Promise(resolve => setTimeout(resolve, 2000))
+            await registerRestaurantRequest({
+                email: data.email,
+                managerName: data.managerName,
+                phone: data.phone,
+                restaurantName: data.restaurantName
+            })
+            
             toast.success('Restaurante cadastrado com sucesso.', {
                 action: {
                     label: 'Login',
-                    onClick: () => navigate('/sign-in')
+                    onClick: () => navigate(`/sign-in?email=${data.email}`)
                 }
             })
             
