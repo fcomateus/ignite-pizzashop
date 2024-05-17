@@ -31,8 +31,6 @@ export function StoreProfileDialog() {
         staleTime: Infinity
     })
 
-    console.log('managedRestaurant', managedRestaurant);
-
     const {
         register,
         handleSubmit,
