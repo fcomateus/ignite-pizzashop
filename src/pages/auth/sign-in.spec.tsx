@@ -7,11 +7,7 @@ import { HelmetProvider } from "react-helmet-async"
 
 describe('SignIn', () => {
     it('should set default email input value if email is present on search params', () => {
-        const wrapper = render(
-            <>
-                <SignIn />
-            </>
-            , {
+        const wrapper = render(<SignIn />, {
             wrapper: ({ children }) => {
                 return (
                     <HelmetProvider>
@@ -25,6 +21,9 @@ describe('SignIn', () => {
             }
         })
 
-        wrapper.debug()
+        const emailInput = wrapper.getByLabelText('Seu e-mail') as HTMLInputElement
+
+        expect(emailInput.value).toEqual('johndoe@example.com')
+
     })
 })

@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form'
 import { z as zod} from 'zod'
 import { Link, useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
-import { registerRestaurant } from "@/api/registerRestaurant"
+import { registerRestaurant } from "@/api/register-restaurant"
 
 const signUpForm = zod.object({
     restaurantName: zod.string(),
